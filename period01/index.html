@@ -1,0 +1,1739 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>逸卓英语打卡 第01期 · 空气与水</title>
+<style>
+:root { --bg:#F7F8FF; --primary:#5B6CFF; --yellow:#FFD166; --pink:#FF7AB6; --green:#55C59D; --text:#1F2433; --muted:#6B7280; --card:#FFFFFF; --line:#E5E7F0; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; line-height:1.6; }
+.wrap { max-width:760px; margin:0 auto; padding:20px 16px 60px; }
+header.hero { background:linear-gradient(135deg,var(--primary),#8A94FF); color:#fff; border-radius:20px; padding:28px 24px; margin-bottom:22px; }
+.hero .tag { display:inline-block; background:rgba(255,255,255,.2); border-radius:999px; padding:3px 12px; font-size:12px; letter-spacing:1px; }
+.hero h1 { font-size:24px; margin:10px 0 6px; }
+.hero p { font-size:14px; opacity:.9; }
+.progress-box { background:var(--card); border-radius:14px; padding:16px; margin-bottom:22px; box-shadow:0 2px 8px rgba(31,36,51,.06); }
+.progress-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:14px; font-weight:600; }
+.progress-bar { height:10px; background:var(--line); border-radius:999px; overflow:hidden; }
+.progress-fill { height:100%; width:0; background:linear-gradient(90deg,var(--primary),var(--green)); border-radius:999px; transition:width .4s; }
+section.day-block { background:var(--card); border-radius:18px; padding:22px; margin-bottom:24px; box-shadow:0 2px 10px rgba(31,36,51,.05); }
+.day-head { display:flex; align-items:center; gap:10px; margin-bottom:4px; }
+.day-badge { background:var(--yellow); color:#5a4a00; font-weight:700; border-radius:10px; padding:4px 12px; font-size:14px; }
+.day-head h2 { font-size:18px; }
+.day-sub { color:var(--muted); font-size:13px; margin-bottom:16px; }
+.word-list { list-style:none; }
+.word-card { display:flex; align-items:center; gap:12px; padding:12px 8px; border-bottom:1px solid var(--line); }
+.word-card:last-child { border-bottom:none; }
+.speak-btn { flex:0 0 auto; width:38px; height:38px; border-radius:50%; border:none; background:var(--primary); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .15s, background .2s; }
+.speak-btn:hover { transform:scale(1.08); background:#4A59E8; }
+.speak-btn:active { transform:scale(.95); }
+.speak-btn.playing { background:var(--green); }
+.word-main { flex:1; min-width:0; display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
+.word { font-size:17px; font-weight:700; }
+.pos { font-size:12px; color:var(--pink); font-weight:600; }
+.ipa { font-size:13px; color:var(--muted); }
+.def { flex:0 0 auto; font-size:14px; color:var(--text); max-width:110px; }
+.check { flex:0 0 auto; position:relative; cursor:pointer; }
+.check input { position:absolute; opacity:0; width:0; height:0; }
+.checkmark { display:flex; align-items:center; justify-content:center; width:26px; height:26px; border:2px solid var(--line); border-radius:8px; color:#fff; background:#fff; transition:all .2s; }
+.check input:checked + .checkmark { background:var(--green); border-color:var(--green); }
+.check input:focus-visible + .checkmark { outline:3px solid rgba(91,108,255,.4); }
+.reading-box { background:#F0F2FF; border-radius:14px; padding:18px; margin-top:14px; }
+.reading-box h3 { font-size:15px; color:var(--primary); margin-bottom:10px; }
+.audio-row audio { width:100%; height:36px; }
+.reading-text { font-size:14px; color:#333; max-height:180px; overflow-y:auto; padding:8px; background:#fff; border-radius:10px; }
+.tip { background:#FFF8E6; border-left:4px solid var(--yellow); padding:12px 14px; border-radius:0 10px 10px 0; font-size:13px; color:#7a5b00; margin:16px 0; }
+.sticky-done { position:sticky; bottom:12px; display:flex; justify-content:center; margin-top:20px; }
+.done-btn { background:var(--green); color:#fff; border:none; border-radius:999px; padding:14px 36px; font-size:16px; font-weight:700; cursor:pointer; box-shadow:0 4px 14px rgba(85,197,157,.4); }
+.done-btn:disabled { background:#C4C9D6; box-shadow:none; cursor:default; }
+footer { text-align:center; color:var(--muted); font-size:12px; margin-top:30px; }
+@media print {
+  .speak-btn, .audio-row, .check input { display:none; }
+  .word-card { break-inside:avoid; }
+  .checkmark { border:none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition:none !important; animation:none !important; }
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <span class="tag">逸卓英语 · 15天词汇打卡营</span>
+    <h1>第 01 期 · 空气与水</h1>
+    <p>本期 100 个核心词汇 · 2 篇科普朗读 · 点喇叭听发音，点✓打卡</p>
+  </header>
+
+  <div class="progress-box">
+    <div class="progress-row"><span>今日打卡进度</span><span id="prog-text">0 / 100</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+  </div>
+
+  <div class="tip">👂 方法：先点 <b>喇叭</b> 听发音 → 自己跟读 3 遍 → 再点 <b>✓</b> 标记学会。每天全勾完就是当天打卡成功！</div>
+
+  <section class="day-block">
+    <div class="day-head"><span class="day-badge">Day 01</span><h2>Air and Our Life · 空气与生命</h2></div>
+    <div class="day-sub">核心词汇 50 词 · 主题：空气与水</div>
+    <ul class="word-list">
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 ability 发音" onclick="playAudio(this)" data-src="audio/words/ability.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">ability</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/ə&#x27;bɪlɪtɪ/</span>
+              </div>
+              <span class="def">能力，能耐</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 ability">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 able 发音" onclick="playAudio(this)" data-src="audio/words/able.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">able</span>
+                <span class="pos">adj.</span>
+                <span class="ipa">/&#x27;eɪb(ə)l/</span>
+              </div>
+              <span class="def">能</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 able">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 about 发音" onclick="playAudio(this)" data-src="audio/words/about.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">about</span>
+                <span class="pos">prep.</span>
+                <span class="ipa">/ə&#x27;baʊt/</span>
+              </div>
+              <span class="def">关于</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 about">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 above 发音" onclick="playAudio(this)" data-src="audio/words/above.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">above</span>
+                <span class="pos">prep.</span>
+                <span class="ipa">/ə&#x27;bʌv/</span>
+              </div>
+              <span class="def">超过</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 above">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 abroad 发音" onclick="playAudio(this)" data-src="audio/words/abroad.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">abroad</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/ə&#x27;brɔːd/</span>
+              </div>
+              <span class="def">海外</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 abroad">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 absent 发音" onclick="playAudio(this)" data-src="audio/words/absent.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">absent</span>
+                <span class="pos">adj.</span>
+                <span class="ipa">/&#x27;æbs(ə)nt/</span>
+              </div>
+              <span class="def">缺席的</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 absent">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 accent 发音" onclick="playAudio(this)" data-src="audio/words/accent.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">accent</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/&#x27;æks(ə)nt; -sent/</span>
+              </div>
+              <span class="def">口音</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 accent">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 accept 发音" onclick="playAudio(this)" data-src="audio/words/accept.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">accept</span>
+                <span class="pos">vt.</span>
+                <span class="ipa">/ə&#x27;ksept/</span>
+              </div>
+              <span class="def">接受</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 accept">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 accident 发音" onclick="playAudio(this)" data-src="audio/words/accident.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">accident</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/&#x27;æksɪdənt/</span>
+              </div>
+              <span class="def">[安全]事故</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 accident">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 ache 发音" onclick="playAudio(this)" data-src="audio/words/ache.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">ache</span>
+                <span class="pos">vi.</span>
+                <span class="ipa">/eɪk/</span>
+              </div>
+              <span class="def">[临床]疼痛</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 ache">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 achieve 发音" onclick="playAudio(this)" data-src="audio/words/achieve.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">achieve</span>
+                <span class="pos">vt.</span>
+                <span class="ipa">/ə&#x27;tʃiːv/</span>
+              </div>
+              <span class="def">达到</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 achieve">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 across 发音" onclick="playAudio(this)" data-src="audio/words/across.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">across</span>
+                <span class="pos">prep.</span>
+                <span class="ipa">/ə&#x27;krɒs/</span>
+              </div>
+              <span class="def">穿过</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 across">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 act 发音" onclick="playAudio(this)" data-src="audio/words/act.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">act</span>
+                <span class="pos">vt.</span>
+                <span class="ipa">/ækt/</span>
+              </div>
+              <span class="def">扮演</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 act">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 action 发音" onclick="playAudio(this)" data-src="audio/words/action.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">action</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/&#x27;ækʃ(ə)n/</span>
+              </div>
+              <span class="def">行动</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 action">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 active 发音" onclick="playAudio(this)" data-src="audio/words/active.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">active</span>
+                <span class="pos">adj.</span>
+                <span class="ipa">/&#x27;æktɪv/</span>
+              </div>
+              <span class="def">积极的</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 active">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 activity 发音" onclick="playAudio(this)" data-src="audio/words/activity.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">activity</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/æk&#x27;tɪvɪtɪ/</span>
+              </div>
+              <span class="def">活动</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 activity">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 add 发音" onclick="playAudio(this)" data-src="audio/words/add.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">add</span>
+                <span class="pos">vi.</span>
+                <span class="ipa">/æd/</span>
+              </div>
+              <span class="def">[数]加</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 add">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 address 发音" onclick="playAudio(this)" data-src="audio/words/address.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">address</span>
+                <span class="pos">vt.</span>
+                <span class="ipa">/ə&#x27;dres/</span>
+              </div>
+              <span class="def">演说</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 address">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 advertisement 发音" onclick="playAudio(this)" data-src="audio/words/advertisement.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">advertisement</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/əd&#x27;vɜːtɪzm(ə)nt;-tɪs-/</span>
+              </div>
+              <span class="def">[经]广告，宣传</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 advertisement">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 advice 发音" onclick="playAudio(this)" data-src="audio/words/advice.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">advice</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/əd&#x27;vaɪs/</span>
+              </div>
+              <span class="def">建议</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 advice">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 advise 发音" onclick="playAudio(this)" data-src="audio/words/advise.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">advise</span>
+                <span class="pos">vt.</span>
+                <span class="ipa">/əd&#x27;vaɪz/</span>
+              </div>
+              <span class="def">建议</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 advise">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 afford 发音" onclick="playAudio(this)" data-src="audio/words/afford.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">afford</span>
+                <span class="pos">vt.</span>
+                <span class="ipa">/ə&#x27;fɔːd/</span>
+              </div>
+              <span class="def">给予，提供</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 afford">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 afraid 发音" onclick="playAudio(this)" data-src="audio/words/afraid.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">afraid</span>
+                <span class="pos">adj.</span>
+                <span class="ipa">/ə&#x27;freɪd/</span>
+              </div>
+              <span class="def">害怕的</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 afraid">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 after 发音" onclick="playAudio(this)" data-src="audio/words/after.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">after</span>
+                <span class="pos">adv.</span>
+                <span class="ipa">/&#x27;ɑːftə/</span>
+              </div>
+              <span class="def">后来，以后</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 after">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 afternoon 发音" onclick="playAudio(this)" data-src="audio/words/afternoon.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">afternoon</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/ɑːftə&#x27;nuːn/</span>
+              </div>
+              <span class="def">午后，下午</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 afternoon">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 again 发音" onclick="playAudio(this)" data-src="audio/words/again.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">again</span>
+                <span class="pos">adv.</span>
+                <span class="ipa">/ə&#x27;gen; ə&#x27;geɪn/</span>
+              </div>
+              <span class="def">又，此外</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 again">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 against 发音" onclick="playAudio(this)" data-src="audio/words/against.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">against</span>
+                <span class="pos">prep.</span>
+                <span class="ipa">/ə&#x27;genst; ə&#x27;geɪnst/</span>
+              </div>
+              <span class="def">反对，违反</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 against">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 age 发音" onclick="playAudio(this)" data-src="audio/words/age.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">age</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/eɪdʒ/</span>
+              </div>
+              <span class="def">年龄</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 age">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 ago 发音" onclick="playAudio(this)" data-src="audio/words/ago.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">ago</span>
+                <span class="pos">adv.</span>
+                <span class="ipa">/ə&#x27;gəʊ/</span>
+              </div>
+              <span class="def">以前，以往</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 ago">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 agree 发音" onclick="playAudio(this)" data-src="audio/words/agree.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">agree</span>
+                <span class="pos">vt.</span>
+                <span class="ipa">/ə&#x27;griː/</span>
+              </div>
+              <span class="def">同意</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 agree">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 agreement 发音" onclick="playAudio(this)" data-src="audio/words/agreement.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">agreement</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/ə&#x27;griːm(ə)nt/</span>
+              </div>
+              <span class="def">[法]协议</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 agreement">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 air 发音" onclick="playAudio(this)" data-src="audio/words/air.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">air</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/eə/</span>
+              </div>
+              <span class="def">[气象]空气，[地物]大气</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 air">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 airline 发音" onclick="playAudio(this)" data-src="audio/words/airline.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">airline</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/&#x27;eəlaɪn/</span>
+              </div>
+              <span class="def">航空公司</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 airline">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 airplane 发音" onclick="playAudio(this)" data-src="audio/words/airplane.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">airplane</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/&#x27;eəpleɪn/</span>
+              </div>
+              <span class="def">[航]飞机</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 airplane">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 airport 发音" onclick="playAudio(this)" data-src="audio/words/airport.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">airport</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/&#x27;eəpɔːt/</span>
+              </div>
+              <span class="def">[航]机场</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 airport">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 alive 发音" onclick="playAudio(this)" data-src="audio/words/alive.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">alive</span>
+                <span class="pos">adj.</span>
+                <span class="ipa">/ə&#x27;laɪv/</span>
+              </div>
+              <span class="def">活着的</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 alive">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 all 发音" onclick="playAudio(this)" data-src="audio/words/all.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">all</span>
+                <span class="pos">adj.</span>
+                <span class="ipa">/ɔːl/</span>
+              </div>
+              <span class="def">全部的</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 all">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 allow 发音" onclick="playAudio(this)" data-src="audio/words/allow.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">allow</span>
+                <span class="pos">vt.</span>
+                <span class="ipa">/ə&#x27;laʊ/</span>
+              </div>
+              <span class="def">允许</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 allow">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 almost 发音" onclick="playAudio(this)" data-src="audio/words/almost.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">almost</span>
+                <span class="pos">adv.</span>
+                <span class="ipa">/&#x27;ɔːlməʊst/</span>
+              </div>
+              <span class="def">差不多，几乎</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 almost">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 alone 发音" onclick="playAudio(this)" data-src="audio/words/alone.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">alone</span>
+                <span class="pos">adj.</span>
+                <span class="ipa">/ə&#x27;ləʊn/</span>
+              </div>
+              <span class="def">独自的</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 alone">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 along 发音" onclick="playAudio(this)" data-src="audio/words/along.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">along</span>
+                <span class="pos">adv.</span>
+                <span class="ipa">/ə&#x27;lɒŋ/</span>
+              </div>
+              <span class="def">一起</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 along">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 aloud 发音" onclick="playAudio(this)" data-src="audio/words/aloud.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">aloud</span>
+                <span class="pos">adv.</span>
+                <span class="ipa">/ə&#x27;laʊd/</span>
+              </div>
+              <span class="def">大声地</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 aloud">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 already 发音" onclick="playAudio(this)" data-src="audio/words/already.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">already</span>
+                <span class="pos">adv.</span>
+                <span class="ipa">/ɔːl&#x27;redɪ/</span>
+              </div>
+              <span class="def">已经，早已</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 already">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 also 发音" onclick="playAudio(this)" data-src="audio/words/also.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">also</span>
+                <span class="pos">adv.</span>
+                <span class="ipa">/&#x27;ɔːlsəʊ/</span>
+              </div>
+              <span class="def">也</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 also">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 although 发音" onclick="playAudio(this)" data-src="audio/words/although.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">although</span>
+                <span class="pos">conj.</span>
+                <span class="ipa">/ɔːl&#x27;ðəʊ; ɒl-/</span>
+              </div>
+              <span class="def">虽然，尽管</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 although">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 always 发音" onclick="playAudio(this)" data-src="audio/words/always.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">always</span>
+                <span class="pos">adv.</span>
+                <span class="ipa">/&#x27;ɔːlweɪz; -ɪz/</span>
+              </div>
+              <span class="def">永远，一直</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 always">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 America 发音" onclick="playAudio(this)" data-src="audio/words/America.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">America</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/ə&#x27;merɪkə/</span>
+              </div>
+              <span class="def">美国</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 America">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 American 发音" onclick="playAudio(this)" data-src="audio/words/American.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">American</span>
+                <span class="pos"></span>
+                <span class="ipa">/əmerɪkən/</span>
+              </div>
+              <span class="def">美国人，美洲人；美国英语</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 American">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 among 发音" onclick="playAudio(this)" data-src="audio/words/among.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">among</span>
+                <span class="pos">prep.</span>
+                <span class="ipa">/ə&#x27;mʌŋ/</span>
+              </div>
+              <span class="def">在…中间</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 among">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 ancient 发音" onclick="playAudio(this)" data-src="audio/words/ancient.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">ancient</span>
+                <span class="pos">adj.</span>
+                <span class="ipa">/&#x27;eɪnʃ(ə)nt/</span>
+              </div>
+              <span class="def">古代的</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 ancient">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+    </ul>
+    <div class="reading-box">
+      <h3>📖 科普朗读 · Air and Our Life</h3>
+      <div class="audio-row"><audio controls preload="none" src="audio/reading/reading_1.mp3"></audio></div>
+      <div class="reading-text">Science often begins with a simple question: how does air and our life affect the world around us? The answer is not a single fact but a connected story of matter, energy, living things, and change. Air is a mixture of gases. Oxygen supports breathing. Plants release oxygen in sunlight. Clean air protects the lungs. Wind moves heat and water around Earth. To investigate this topic, students can ask a clear question, make careful observations, and record the results. A useful test should be fair, safe, and easy to repeat. We may compare two conditions, measure a change, or collect evidence over several days. Each detail matters, because one small difference can affect the final explanation. When evidence does not support our first idea, we should not hide it. We should review the method and think again. This way of learning also connects science with daily life. A local park, a family kitchen, or a school garden can all become starting points for inquiry. Students can gather information from books, compare it with direct experience, and communicate their conclusions in simple language. They should also remember that scientific knowledge can improve when new evidence appears. Most importantly, science is a shared process. People ask questions, test ideas, discuss mistakes, and build better explanations together. By reading aloud slowly, marking unfamiliar expressions, and retelling the main idea, learners can improve both scientific thinking and English fluency. Word count: 235 ｜ 建议：先默读，再跟读，最后用英语复述主旨。</div>
+    </div>
+  </section>
+
+  <section class="day-block">
+    <div class="day-head"><span class="day-badge">Day 02</span><h2>Water&#x27;s Amazing Journey · 水的奇妙旅程</h2></div>
+    <div class="day-sub">核心词汇 50 词 · 主题：空气与水</div>
+    <ul class="word-list">
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 and 发音" onclick="playAudio(this)" data-src="audio/words/and.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">and</span>
+                <span class="pos">conj.</span>
+                <span class="ipa">/ənd; (ə)n; ænd/</span>
+              </div>
+              <span class="def">和，与</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 and">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 angry 发音" onclick="playAudio(this)" data-src="audio/words/angry.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">angry</span>
+                <span class="pos">adj.</span>
+                <span class="ipa">/&#x27;æŋgrɪ/</span>
+              </div>
+              <span class="def">生气的</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 angry">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 animal 发音" onclick="playAudio(this)" data-src="audio/words/animal.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">animal</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/&#x27;ænɪm(ə)l/</span>
+              </div>
+              <span class="def">[动]动物</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 animal">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 another 发音" onclick="playAudio(this)" data-src="audio/words/another.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">another</span>
+                <span class="pos">adj.</span>
+                <span class="ipa">/ə&#x27;nʌðə/</span>
+              </div>
+              <span class="def">又一，另一</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 another">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 answer 发音" onclick="playAudio(this)" data-src="audio/words/answer.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">answer</span>
+                <span class="pos">vt.</span>
+                <span class="ipa">/&#x27;ɑːnsə/</span>
+              </div>
+              <span class="def">回答</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 answer">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 ant 发音" onclick="playAudio(this)" data-src="audio/words/ant.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">ant</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/ænt/</span>
+              </div>
+              <span class="def">蚂蚁</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 ant">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 any 发音" onclick="playAudio(this)" data-src="audio/words/any.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">any</span>
+                <span class="pos">adj.</span>
+                <span class="ipa">/&#x27;enɪ/</span>
+              </div>
+              <span class="def">任何的</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 any">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 anyone 发音" onclick="playAudio(this)" data-src="audio/words/anyone.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">anyone</span>
+                <span class="pos"></span>
+                <span class="ipa">/&#x27;enɪwʌn/</span>
+              </div>
+              <span class="def">任何人；任何一个</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 anyone">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 anything 发音" onclick="playAudio(this)" data-src="audio/words/anything.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">anything</span>
+                <span class="pos"></span>
+                <span class="ipa">/&#x27;enɪθɪŋ/</span>
+              </div>
+              <span class="def">任何事</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 anything">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 anyway 发音" onclick="playAudio(this)" data-src="audio/words/anyway.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">anyway</span>
+                <span class="pos">adv.</span>
+                <span class="ipa">/&#x27;enɪweɪ/</span>
+              </div>
+              <span class="def">无论如何，不管怎样</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 anyway">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 anywhere 发音" onclick="playAudio(this)" data-src="audio/words/anywhere.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">anywhere</span>
+                <span class="pos">adv.</span>
+                <span class="ipa">/&#x27;enɪweə/</span>
+              </div>
+              <span class="def">在任何地方</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 anywhere">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 appear 发音" onclick="playAudio(this)" data-src="audio/words/appear.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">appear</span>
+                <span class="pos">vi.</span>
+                <span class="ipa">/ə&#x27;pɪə/</span>
+              </div>
+              <span class="def">出现</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 appear">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 apple 发音" onclick="playAudio(this)" data-src="audio/words/apple.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">apple</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/&#x27;æp(ə)l/</span>
+              </div>
+              <span class="def">[园艺]苹果</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 apple">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 April 发音" onclick="playAudio(this)" data-src="audio/words/April.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">April</span>
+                <span class="pos"></span>
+                <span class="ipa">/&#x27;eɪprəl/</span>
+              </div>
+              <span class="def">四月</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 April">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 area 发音" onclick="playAudio(this)" data-src="audio/words/area.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">area</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/&#x27;eərɪə/</span>
+              </div>
+              <span class="def">区域，[地理]地区</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 area">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 arm 发音" onclick="playAudio(this)" data-src="audio/words/arm.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">arm</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/ɑːm/</span>
+              </div>
+              <span class="def">手臂</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 arm">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 army 发音" onclick="playAudio(this)" data-src="audio/words/army.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">army</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/&#x27;ɑːmɪ/</span>
+              </div>
+              <span class="def">陆军，[军]军队</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 army">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 around 发音" onclick="playAudio(this)" data-src="audio/words/around.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">around</span>
+                <span class="pos">adv.</span>
+                <span class="ipa">/ə&#x27;raʊnd/</span>
+              </div>
+              <span class="def">大约</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 around">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 arrive 发音" onclick="playAudio(this)" data-src="audio/words/arrive.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">arrive</span>
+                <span class="pos">vi.</span>
+                <span class="ipa">/ə&#x27;raɪv/</span>
+              </div>
+              <span class="def">到达</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 arrive">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 art 发音" onclick="playAudio(this)" data-src="audio/words/art.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">art</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/ɑːt/</span>
+              </div>
+              <span class="def">艺术</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 art">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 article 发音" onclick="playAudio(this)" data-src="audio/words/article.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">article</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/&#x27;ɑːtɪk(ə)l/</span>
+              </div>
+              <span class="def">文章</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 article">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 as 发音" onclick="playAudio(this)" data-src="audio/words/as.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">as</span>
+                <span class="pos">conj.</span>
+                <span class="ipa">/æz; əz/</span>
+              </div>
+              <span class="def">因为</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 as">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 Asia 发音" onclick="playAudio(this)" data-src="audio/words/Asia.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">Asia</span>
+                <span class="pos"></span>
+                <span class="ipa">/ˈeɪʒə;ˈeɪʃə/</span>
+              </div>
+              <span class="def">亚洲</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 Asia">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 Asian 发音" onclick="playAudio(this)" data-src="audio/words/Asian.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">Asian</span>
+                <span class="pos"></span>
+                <span class="ipa">/&#x27;eiʃən/</span>
+              </div>
+              <span class="def">亚洲人</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 Asian">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 ask 发音" onclick="playAudio(this)" data-src="audio/words/ask.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">ask</span>
+                <span class="pos">vt.</span>
+                <span class="ipa">/ɑːsk/</span>
+              </div>
+              <span class="def">问，询问</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 ask">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 asleep 发音" onclick="playAudio(this)" data-src="audio/words/asleep.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">asleep</span>
+                <span class="pos">adj.</span>
+                <span class="ipa">/ə&#x27;sliːp/</span>
+              </div>
+              <span class="def">睡着的</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 asleep">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 at 发音" onclick="playAudio(this)" data-src="audio/words/at.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">at</span>
+                <span class="pos">prep.</span>
+                <span class="ipa">/æt; ət/</span>
+              </div>
+              <span class="def">在（表示存在或出现的地点、场所、位置、空间）</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 at">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 Atlantic 发音" onclick="playAudio(this)" data-src="audio/words/Atlantic.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">Atlantic</span>
+                <span class="pos"></span>
+                <span class="ipa">/æt&#x27;læntɪk/</span>
+              </div>
+              <span class="def">大西洋</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 Atlantic">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 attention 发音" onclick="playAudio(this)" data-src="audio/words/attention.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">attention</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/ə&#x27;tenʃ(ə)n/</span>
+              </div>
+              <span class="def">注意力</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 attention">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 August 发音" onclick="playAudio(this)" data-src="audio/words/August.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">August</span>
+                <span class="pos">adj.</span>
+                <span class="ipa">/ɔ:ˈgʌst/</span>
+              </div>
+              <span class="def">威严的</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 August">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 aunt 发音" onclick="playAudio(this)" data-src="audio/words/aunt.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">aunt</span>
+                <span class="pos"></span>
+                <span class="ipa">/ɑːnt/</span>
+              </div>
+              <span class="def">阿姨；姑妈；伯母；舅妈</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 aunt">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 Australia 发音" onclick="playAudio(this)" data-src="audio/words/Australia.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">Australia</span>
+                <span class="pos"></span>
+                <span class="ipa">/ɒ&#x27;streɪlɪə/</span>
+              </div>
+              <span class="def">澳大利亚，澳洲</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 Australia">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 Australian 发音" onclick="playAudio(this)" data-src="audio/words/Australian.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">Australian</span>
+                <span class="pos"></span>
+                <span class="ipa">/ɑ&#x27;strelɪən/</span>
+              </div>
+              <span class="def">澳大利亚的，澳大利亚人的</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 Australian">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 autumn 发音" onclick="playAudio(this)" data-src="audio/words/autumn.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">autumn</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/&#x27;ɔːtəm/</span>
+              </div>
+              <span class="def">秋天</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 autumn">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 available 发音" onclick="playAudio(this)" data-src="audio/words/available.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">available</span>
+                <span class="pos">adj.</span>
+                <span class="ipa">/ə&#x27;veɪləb(ə)l/</span>
+              </div>
+              <span class="def">[交]有效的，可得的</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 available">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 avoid 发音" onclick="playAudio(this)" data-src="audio/words/avoid.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">avoid</span>
+                <span class="pos">vt.</span>
+                <span class="ipa">/ə&#x27;vɒɪd/</span>
+              </div>
+              <span class="def">避免</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 avoid">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 away 发音" onclick="playAudio(this)" data-src="audio/words/away.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">away</span>
+                <span class="pos">adv.</span>
+                <span class="ipa">/ə&#x27;weɪ/</span>
+              </div>
+              <span class="def">离去，离开</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 away">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 baby 发音" onclick="playAudio(this)" data-src="audio/words/baby.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">baby</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/&#x27;beɪbɪ/</span>
+              </div>
+              <span class="def">婴儿，婴孩</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 baby">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 back 发音" onclick="playAudio(this)" data-src="audio/words/back.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">back</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/bæk/</span>
+              </div>
+              <span class="def">[机]后面</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 back">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 background 发音" onclick="playAudio(this)" data-src="audio/words/background.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">background</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/&#x27;bækgraʊnd/</span>
+              </div>
+              <span class="def">[物]背景</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 background">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 bag 发音" onclick="playAudio(this)" data-src="audio/words/bag.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">bag</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/bæg/</span>
+              </div>
+              <span class="def">袋</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 bag">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 ball 发音" onclick="playAudio(this)" data-src="audio/words/ball.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">ball</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/bɔːl/</span>
+              </div>
+              <span class="def">球</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 ball">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 balloon 发音" onclick="playAudio(this)" data-src="audio/words/balloon.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">balloon</span>
+                <span class="pos">vi.</span>
+                <span class="ipa">/bə&#x27;luːn/</span>
+              </div>
+              <span class="def">激增</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 balloon">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 bamboo 发音" onclick="playAudio(this)" data-src="audio/words/bamboo.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">bamboo</span>
+                <span class="pos">adj.</span>
+                <span class="ipa">/bæm&#x27;buː/</span>
+              </div>
+              <span class="def">竹制的</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 bamboo">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 banana 发音" onclick="playAudio(this)" data-src="audio/words/banana.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">banana</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/bə&#x27;nɑːnə/</span>
+              </div>
+              <span class="def">[园艺]香蕉</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 banana">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 bank 发音" onclick="playAudio(this)" data-src="audio/words/bank.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">bank</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/bæŋk/</span>
+              </div>
+              <span class="def">[金融]银行</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 bank">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 basic 发音" onclick="playAudio(this)" data-src="audio/words/basic.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">basic</span>
+                <span class="pos">adj.</span>
+                <span class="ipa">/&#x27;beɪsɪk/</span>
+              </div>
+              <span class="def">[岩]基本的</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 basic">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 basket 发音" onclick="playAudio(this)" data-src="audio/words/basket.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">basket</span>
+                <span class="pos"></span>
+                <span class="ipa">/&#x27;bɑːskɪt/</span>
+              </div>
+              <span class="def">篮子；（篮球比赛的）得分；一篮之量；篮筐</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 basket">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 basketball 发音" onclick="playAudio(this)" data-src="audio/words/basketball.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">basketball</span>
+                <span class="pos"></span>
+                <span class="ipa">/&#x27;bɑːskɪtbɔːl/</span>
+              </div>
+              <span class="def">篮球；篮球运动</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 basketball">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+
+            <li class="word-card">
+              <button type="button" class="speak-btn" aria-label="播放 bathroom 发音" onclick="playAudio(this)" data-src="audio/words/bathroom.mp3">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 010 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <div class="word-main">
+                <span class="word">bathroom</span>
+                <span class="pos">n.</span>
+                <span class="ipa">/&#x27;bɑːθruːm; -rʊm/</span>
+              </div>
+              <span class="def">浴室</span>
+              <label class="check">
+                <input type="checkbox" aria-label="已学会 bathroom">
+                <span class="checkmark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12l5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </label>
+            </li>
+    </ul>
+    <div class="reading-box">
+      <h3>📖 科普朗读 · Water&#x27;s Amazing Journey</h3>
+      <div class="audio-row"><audio controls preload="none" src="audio/reading/reading_2.mp3"></audio></div>
+      <div class="reading-text">Science often begins with a simple question: how does water&#x27;s amazing journey affect the world around us? The answer is not a single fact but a connected story of matter, energy, living things, and change. Water changes among solid, liquid, and gas. Sunlight drives evaporation. Clouds form by condensation. Rain returns water to land. The water cycle connects oceans, soil, and living things. To investigate this topic, students can ask a clear question, make careful observations, and record the results. A useful test should be fair, safe, and easy to repeat. We may compare two conditions, measure a change, or collect evidence over several days. Each detail matters, because one small difference can affect the final explanation. When evidence does not support our first idea, we should not hide it. We should review the method and think again. This way of learning also connects science with daily life. A local park, a family kitchen, or a school garden can all</div>
+    </div>
+  </section>
+
+  <div class="sticky-done">
+    <button class="done-btn" id="done-btn" disabled onclick="finishDay()">✅ 今日已全部学会，打卡！</button>
+  </div>
+</main>
+<footer>逸卓英语 · 让开口成为习惯 | 内容参考自初中英语1500核心词汇</footer>
+<script>
+const checkboxes = document.querySelectorAll('.word-card input[type=checkbox]');
+const total = checkboxes.length;
+const progText = document.getElementById('prog-text');
+const progFill = document.getElementById('prog-fill');
+const doneBtn = document.getElementById('done-btn');
+function update() {
+  const n = document.querySelectorAll('.word-card input:checked').length;
+  progText.textContent = n + ' / ' + total;
+  progFill.style.width = (n/total*100) + '%';
+  doneBtn.disabled = (n < total);
+  doneBtn.textContent = n < total ? ('✅ 再勾选 ' + (total-n) + ' 个就完成') : '🎉 今日已全部学会，打卡成功！';
+  try { localStorage.setItem('ck_period_1', JSON.stringify([...checkboxes].map(c=>c.checked))); } catch(e){}
+}
+checkboxes.forEach(c => c.addEventListener('change', update));
+try {
+  const saved = JSON.parse(localStorage.getItem('ck_period_1'));
+  if (saved) { checkboxes.forEach((c,i)=>{ if(saved[i]) c.checked=true; }); update(); }
+} catch(e){}
+function playAudio(btn) {
+  const all = document.querySelectorAll('.speak-btn');
+  all.forEach(b=>b.classList.remove('playing'));
+  if (window._audio) { window._audio.pause(); }
+  window._audio = new Audio(btn.dataset.src);
+  window._audio.play().then(()=>btn.classList.add('playing')).catch(()=>alert('音频无法播放'));
+  window._audio.onended = ()=>btn.classList.remove('playing');
+}
+function finishDay() {
+  const d = new Date();
+  try { localStorage.setItem('ck_done_1', JSON.stringify({period: 1, time: new Date().toISOString()})); } catch(e){}
+  doneBtn.textContent = '🎉 打卡成功！明天见';
+}
+</script>
+</body>
+</html>
